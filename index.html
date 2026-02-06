@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Nithishkumar K, a Data Analyst transforming data into business decisions.">
+    <title>Nithishkumar K | Data Analyst Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Professional Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">NK.</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact" class="btn-nav">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container hero-content">
+            <span class="subtitle">Hello, I'm</span>
+            <h1 class="animate-text">Nithishkumar K</h1>
+            <h2 class="animate-text delay-1">Data Analyst</h2>
+            <p class="pitch animate-text delay-2">
+                I transform raw operational data into decisions that improve profit, reduce cost, and detect performance issues early.
+            </p>
+            <div class="cta-buttons animate-text delay-3">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="resume.pdf" class="btn btn-secondary" download>Download Resume</a>
+                <a href="#contact" class="btn btn-outline">Contact</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">Business & Technical Skills</h2>
+            <div class="skills-grid">
+                <!-- Card 1 -->
+                <div class="skill-card">
+                    <div class="icon-box"><i class="fas fa-filter"></i></div>
+                    <h3>Data Cleaning & Validation</h3>
+                    <p>Ensuring data integrity for accurate analysis.</p>
+                    <div class="tags">
+                        <span>SQL</span><span>Python</span><span>Excel</span>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="skill-card">
+                    <div class="icon-box"><i class="fas fa-search-dollar"></i></div>
+                    <h3>Exploratory Data Analysis</h3>
+                    <p>Uncovering patterns and hidden trends.</p>
+                    <div class="tags">
+                        <span>Python</span><span>SQL</span><span>Power BI</span>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="skill-card">
+                    <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                    <h3>Business KPI Reporting</h3>
+                    <p>Tracking performance against strategic goals.</p>
+                    <div class="tags">
+                        <span>Excel</span><span>Power BI</span><span>SQL</span>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="skill-card">
+                    <div class="icon-box"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3>Dashboard Communication</h3>
+                    <p>Visualizing insights for stakeholders.</p>
+                    <div class="tags">
+                        <span>Power BI</span><span>Tableau</span><span>Excel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Case Studies</h2>
+            <div class="projects-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card" data-id="1">
+                    <div class="project-header">
+                        <h3>Retail Profit Leakage Analysis</h3>
+                        <span class="wip-tag">Profit Optimization</span>
+                    </div>
+                    <div class="project-summary">
+                        <p><strong>Problem:</strong> Revenue growing but profit inconsistent.</p>
+                        <p><strong>Impact:</strong> Projected 14–18% profit improvement.</p>
+                    </div>
+                    <button class="btn btn-small" onclick="openModal(1)">View Case Study</button>
+                    <a href="#" class="github-link"><i class="fab fa-github"></i> Source</a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-id="2">
+                    <div class="project-header">
+                        <h3>Marketing Campaign Effectiveness</h3>
+                        <span class="wip-tag">Cost Reduction</span>
+                    </div>
+                    <div class="project-summary">
+                        <p><strong>Problem:</strong> Marketing budget waste.</p>
+                        <p><strong>Impact:</strong> ~30% CAC reduction.</p>
+                    </div>
+                    <button class="btn btn-small" onclick="openModal(2)">View Case Study</button>
+                    <a href="#" class="github-link"><i class="fab fa-github"></i> Source</a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-id="3">
+                    <div class="project-header">
+                        <h3>Delivery Delay Root Cause</h3>
+                        <span class="wip-tag">Operations</span>
+                    </div>
+                    <div class="project-summary">
+                        <p><strong>Problem:</strong> Late deliveries impacting satisfaction.</p>
+                        <p><strong>Impact:</strong> 22% delay reduction.</p>
+                    </div>
+                    <button class="btn btn-small" onclick="openModal(3)">View Case Study</button>
+                    <a href="#" class="github-link"><i class="fab fa-github"></i> Source</a>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-id="4">
+                    <div class="project-header">
+                        <h3>Executive Performance Dashboard</h3>
+                        <span class="wip-tag">Automation</span>
+                    </div>
+                    <div class="project-summary">
+                        <p><strong>Goal:</strong> Replace manual reports with auto-updates.</p>
+                        <p><strong>Value:</strong> Instant issue identification.</p>
+                    </div>
+                    <button class="btn btn-small" onclick="openModal(4)">View Case Study</button>
+                    <a href="#" class="github-link"><i class="fab fa-github"></i> Source</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Data Analyst Intern</h3>
+                        <h4>RR IT Solutions</h4>
+                        <span class="date">May 2025 – Oct 2025</span>
+                        <ul>
+                            <li>Automated daily MIS reporting using SQL procedures, saving 2 hours of manual work daily.</li>
+                            <li>Improved data accuracy by 15% through implementing rigorous validation scripts (Python/Pandas).</li>
+                            <li>Designed and maintained a real-time operational dashboard for monitoring team KPIs.</li>
+                            <li>Reduced manual data entry effort for the finance team by integrating Excel macros.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section-padding">
+        <div class="container text-center">
+            <h2 class="section-title">Resume</h2>
+            <p class="mb-20">Download my full resume to see more details about my qualifications.</p>
+            <div class="resume-preview">
+                <i class="fas fa-file-pdf fa-5x"></i>
+                <p>Nithishkumar_K_Resume.pdf</p>
+            </div>
+            <br>
+            <a href="resume.pdf" class="btn btn-primary" download>Download PDF</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-dark">
+        <div class="container">
+            <h2 class="section-title text-white">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>nithi11716@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9787169246</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Chennai, India</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Nithishkumar K. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="modal-container" class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Project Data for Modals -->
+    <script>
+        const projectData = {
+            1: {
+                title: "Retail Profit Leakage Analysis",
+                problem: "The retail chain saw revenue growing, but net profit remained inconsistent and low.",
+                approach: "Extracted transactional data using SQL to calculate item-level margins. Performed customer segmentation and loss-leader product detection.",
+                tools: "SQL, Excel, Python",
+                insight: "Identified that 20% of products were generating the majority of revenue but had minimal or negative profit margins due to excessive discounting.",
+                decision: "Recommended removing discounting on the low-margin product category.",
+                impact: "Projected 14–18% net profit improvement over the next quarter."
+            },
+            2: {
+                title: "Marketing Campaign Effectiveness",
+                problem: "Marketing budget was being utilized without a clear understanding of ROI per channel.",
+                approach: "Analyzed conversion rates by channel and compared customer acquisition costs (CAC).",
+                tools: "Python, Tableau, SQL",
+                insight: "Paid social campaigns had a high cost but low conversion rate compared to email and referral channels.",
+                decision: "Reallocate 40% of the paid social budget to email marketing and referral incentives.",
+                impact: "~30% reduction in Customer Acquisition Cost (CAC) within 2 months."
+            },
+            3: {
+                title: "Delivery Delay Root Cause Analysis",
+                problem: "Rising complaints regarding late deliveries were affecting customer satisfaction scores.",
+                approach: "Compared warehouse processing times vs. transport transit times to identify bottlenecks.",
+                tools: "SQL, Power BI",
+                insight: "Warehouse processing time was a bigger factor than travel distance in 70% of delayed orders.",
+                decision: "Implemented a priority dispatch window for orders identified as 'high risk' for delay.",
+                impact: "22% reduction in delivery delays in the pilot region."
+            },
+            4: {
+                title: "Executive Performance Dashboard",
+                problem: "Senior management relied on manual weekly reports that were error-prone and delayed.",
+                approach: "Built an automated Power BI dashboard with live data connections.",
+                tools: "Power BI, SQL Server",
+                insight: "N/A - This was an enablement project.",
+                decision: "N/A",
+                impact: "Replaced 5 manual reports. Managers can now identify performance issues instantly with drill-down filters."
+            }
+        };
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
