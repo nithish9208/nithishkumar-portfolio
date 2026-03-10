@@ -1,240 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nithishkumar K | Data Analyst Portfolio</title>
+    <meta name="description" content="Portfolio of Nithishkumar K, a Data Analyst specializing in Marketing Analytics and visualization with SQL, Python, Excel, and Power BI.">
+    <title>Nithishkumar K | Data Analyst & Marketing Analytics</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for Enterprise Look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
-    <!-- Sticky Navbar -->
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Nithishkumar K.</div>
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Nithish.data</span>
+            </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#dashboards">Live Dashboards</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#" class="btn-nav">Download Resume</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#lab" class="lab-link"><i class="fa-solid fa-flask"></i> Simulation Lab</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <h1>Data Analyst</h1>
-            <p class="subtitle">Live operational data monitoring and performance analysis.</p>
-            <div class="hero-buttons">
-                <a href="#dashboards" class="btn btn-primary">View Dashboards</a>
-                <a href="#" class="btn btn-secondary">Download Resume</a>
+    <header class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge">Open to Opportunities</div>
+                <h1>Nithishkumar K</h1>
+                <h2>Data Analyst | Marketing Analytics Enthusiast</h2>
+                <p>
+                    Electronics and Communication Engineering graduate with internship experience in data analysis, reporting automation, and dashboard development. Skilled in SQL, Python, Excel, and Power BI with a strong interest in analyzing marketing performance, customer engagement, and operational data to generate actionable insights.
+                </p>
+                <div class="contact-info">
+                    <span><i class="fa-solid fa-location-dot"></i> Chennai, India</span>
+                    <span><i class="fa-solid fa-phone"></i> +91-9787169246</span>
+                    <span><i class="fa-solid fa-envelope"></i> nithi11716@gmail.com</span>
+                    <span><i class="fa-brands fa-linkedin"></i> nithishkumar-k</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="mailto:nithi11716@gmail.com" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="dashboard-mockup">
+                    <div class="mockup-header">
+                        <div class="dots"><span></span><span></span><span></span></div>
+                        <div class="title">marketing_kpi_overview.pbix</div>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="mockup-kpis">
+                            <div class="m-kpi"><div class="m-val">24.5k</div><div class="m-lbl">Users</div></div>
+                            <div class="m-kpi"><div class="m-val">4.2%</div><div class="m-lbl">Conv. Rate</div></div>
+                            <div class="m-kpi"><div class="m-val">$12k</div><div class="m-lbl">Ad Spend</div></div>
+                        </div>
+                        <div class="m-chart">
+                            <canvas id="heroMockupChart"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Live Dashboards Section -->
-    <section id="dashboards" class="section">
-        <div class="container">
-            <h2 class="section-title">Live Analytical Dashboards</h2>
-            <p class="section-desc">Real-time data fetching and analysis using vanilla JavaScript.</p>
-
-            <div class="dashboard-grid">
-
-                <!-- Dashboard 1: Market Performance -->
-                <div class="dashboard-card" id="market-card">
-                    <div class="card-header">
-                        <h3>Market Performance</h3>
-                        <span class="live-dot"></span> Live
-                    </div>
-                    <div class="card-body">
-                        <div class="kpi-row">
-                            <div class="kpi-box">
-                                <span class="kpi-label">Bitcoin</span>
-                                <span class="kpi-value" id="btc-price">Loading...</span>
-                            </div>
-                            <div class="kpi-box">
-                                <span class="kpi-label">Volume (24h)</span>
-                                <span class="kpi-value" id="btc-volume">Loading...</span>
-                            </div>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="marketChart"></canvas>
-                        </div>
-                        <div class="business-insight">
-                            <strong>Insight:</strong> <span id="market-insight">Analyzing market trends...</span>
-                        </div>
-                    </div>
+    <main>
+        <!-- About Section -->
+        <section class="about section" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About Me</h2>
+                    <p>Transforming raw data into meaningful insights that drive business strategy.</p>
                 </div>
-
-                <!-- Dashboard 2: Currency Analysis -->
-                <div class="dashboard-card" id="currency-card">
-                    <div class="card-header">
-                        <h3>Currency Analysis</h3>
-                        <span class="live-dot"></span> Live
+                <div class="about-grid">
+                    <div class="about-text card">
+                        <p>I am passionate about the intersection of data and business, specifically how data analytics can be leveraged to optimize marketing performance and operational efficiency. I enjoy the process of untangling messy datasets, discovering hidden patterns, and building dashboards that tell a compelling story.</p>
+                        <p>My experience spans creating robust reporting templates, automating data workflows, and analyzing operational datasets to support decision-making. I am highly focused on tracking the right KPIs, building data-driven strategies, and making performance measurement clear and actionable for stakeholders.</p>
                     </div>
-                    <div class="card-body">
-                        <div class="kpi-row">
-                            <div class="kpi-box">
-                                <span class="kpi-label">1 USD to INR</span>
-                                <span class="kpi-value" id="usd-inr">Loading...</span>
-                            </div>
-                            <div class="kpi-box">
-                                <span class="kpi-label">1 EUR to INR</span>
-                                <span class="kpi-value" id="eur-inr">Loading...</span>
-                            </div>
+                    <div class="about-stats card">
+                        <div class="stat-item">
+                            <i class="fa-solid fa-database"></i>
+                            <h4>5000+</h4>
+                            <p>Rows cleaned & validated</p>
                         </div>
-                        <div class="chart-container">
-                            <canvas id="currencyChart"></canvas>
+                        <div class="stat-item">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <h4>KPIs</h4>
+                            <p>Tracked & Visualized</p>
                         </div>
-                        <div class="business-insight">
-                            <strong>Insight:</strong> <span id="currency-insight">Comparing exchange
-                                volatility...</span>
+                        <div class="stat-item">
+                            <i class="fa-solid fa-bolt"></i>
+                            <h4>Automation</h4>
+                            <p>Reduced manual processing</p>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Dashboard 3: Delivery Risk Monitor -->
-                <div class="dashboard-card" id="risk-card">
-                    <div class="card-header">
-                        <h3>Delivery Risk Monitor (Chennai)</h3>
-                        <span class="live-dot"></span> Live
-                    </div>
-                    <div class="card-body">
-                        <div class="weather-grid">
-                            <div class="weather-item">
-                                <span class="label">Wind Speed</span>
-                                <span class="value" id="wind-speed">-- km/h</span>
-                            </div>
-                            <div class="weather-item">
-                                <span class="label">Temperature</span>
-                                <span class="value" id="temp">-- °C</span>
-                            </div>
-                        </div>
-                        <div class="risk-indicator" id="risk-indicator">
-                            <div class="risk-level">Risk Level: <span id="risk-text">Calculating...</span></div>
-                            <div class="risk-bar">
-                                <div class="risk-fill" id="risk-fill"></div>
-                            </div>
-                        </div>
-                        <div class="business-insight">
-                            <strong>Operational Impact:</strong> <span id="weather-insight">Assessing logistics
-                                conditions...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dashboard 4: Sales Data Analysis -->
-                <div class="dashboard-card full-width" id="sales-card">
-                    <div class="card-header">
-                        <h3>Sales Profitability Analysis</h3>
-                        <div class="card-controls">
-                            <button class="btn-sm" onclick="filterSales('all')">All</button>
-                            <button class="btn-sm" onclick="filterSales('loss')">Show Loss Makers</button>
-                            <button class="btn-sm" onclick="filterSales('high-margin')">High Margin</button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-container">
-                            <table id="sales-table">
-                                <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Region</th>
-                                        <th>Revenue</th>
-                                        <th>Cost</th>
-                                        <th>Margin %</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="sales-body">
-                                    <!-- Populated by JS -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="business-insight">
-                            <strong>Analysis:</strong> Identifies underperforming SKUs and region-specific margin trends
-                            to optimize inventory.
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Technical Proficiency</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Data Analysis</h3>
-                    <ul>
-                        <li>Detecting loss-making inventories</li>
-                        <li>Trend analysis & forecasting</li>
-                        <li>Operational risk assessment</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>Tools</h3>
-                    <div class="tags">
-                        <span class="tag">SQL</span>
-                        <span class="tag">Microsoft Excel</span>
-                        <span class="tag">Python (Pandas)</span>
-                        <span class="tag">Power BI</span>
-                        <span class="tag">Tableau</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Internship</div>
-                    <div class="timeline-content">
-                        <h3>Data Analyst Intern</h3>
-                        <h4>RR IT Solutions</h4>
-                        <p>Focus on data automation, validation, and performance monitoring.</p>
-                        <ul>
-                            <li>Automated daily reporting tasks using Python scripts.</li>
-                            <li>Validated integrity of large customer datasets.</li>
-                            <li>Monitored server uptime logs to predict maintenance windows.</li>
+        <!-- Skills Section -->
+        <section class="skills section bg-light" id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Technical Arsenal</h2>
+                    <p>Tools and technologies I use to analyze and visualize data.</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category card">
+                        <div class="icon-box"><i class="fa-solid fa-chart-bar"></i></div>
+                        <h3>Analysis & Visualization</h3>
+                        <ul class="skill-list">
+                            <li><span class="skill-name">Power BI</span> <div class="bar-bg"><div class="bar-fill" style="width: 85%"></div></div></li>
+                            <li><span class="skill-name">Advanced Excel</span> <div class="bar-bg"><div class="bar-fill" style="width: 90%"></div></div></li>
+                            <li><span class="skill-name">Matplotlib</span> <div class="bar-bg"><div class="bar-fill" style="width: 75%"></div></div></li>
+                        </ul>
+                    </div>
+                    <div class="skill-category card">
+                        <div class="icon-box"><i class="fa-solid fa-server"></i></div>
+                        <h3>Databases</h3>
+                        <ul class="skill-list">
+                            <li><span class="skill-name">MySQL</span> <div class="bar-bg"><div class="bar-fill" style="width: 80%"></div></div></li>
+                            <li><span class="skill-name">SQL Queries</span> <div class="bar-bg"><div class="bar-fill" style="width: 85%"></div></div></li>
+                            <li><span class="skill-name">Data Extraction</span> <div class="bar-bg"><div class="bar-fill" style="width: 80%"></div></div></li>
+                        </ul>
+                    </div>
+                    <div class="skill-category card">
+                        <div class="icon-box"><i class="fa-brands fa-python"></i></div>
+                        <h3>Programming</h3>
+                        <ul class="skill-list">
+                            <li><span class="skill-name">Python</span> <div class="bar-bg"><div class="bar-fill" style="width: 75%"></div></div></li>
+                            <li><span class="skill-name">Pandas</span> <div class="bar-bg"><div class="bar-fill" style="width: 80%"></div></div></li>
+                            <li><span class="skill-name">NumPy</span> <div class="bar-bg"><div class="bar-fill" style="width: 70%"></div></div></li>
                         </ul>
                     </div>
                 </div>
+                
+                <div class="core-competencies">
+                    <h4>Core Competencies</h4>
+                    <div class="tags">
+                        <span class="tag">Data Cleaning</span>
+                        <span class="tag">Exploratory Data Analysis</span>
+                        <span class="tag">KPI Tracking</span>
+                        <span class="tag">Trend Analysis</span>
+                        <span class="tag">Reporting Automation</span>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience section" id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Professional Experience</h2>
+                    <p>My foundational roles in the data world.</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content card">
+                            <div class="exp-header">
+                                <h3>Data Analyst Intern</h3>
+                                <div class="company"><i class="fa-solid fa-building"></i> RR IT Solutions, Chennai</div>
+                                <div class="date"><i class="fa-regular fa-calendar"></i> May 2025 – Oct 2025</div>
+                            </div>
+                            <ul class="exp-list">
+                                <li>Developed daily and monthly MIS reports using <strong>SQL and Excel</strong> for cross-functional teams to monitor progress.</li>
+                                <li>Cleaned and validated datasets of over <strong>5000 rows</strong> using Python <strong>Pandas</strong> to improve reporting accuracy and data integrity.</li>
+                                <li>Created Excel data transformation templates that significantly reduced manual data processing effort.</li>
+                                <li>Designed a <strong>Power BI dashboard</strong> to effectively visualize key operational performance metrics.</li>
+                                <li>Wrote optimized <strong>MySQL queries</strong> to extract and analyze relational data for ad-hoc business requests.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects section bg-light" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Portfolio Projects</h2>
+                    <p>Practical applications of analytics across domains.</p>
+                </div>
+                <div class="project-grid">
+                    <div class="project-card card">
+                        <div class="project-img bg-p1">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tags">
+                                <span>Power BI</span>
+                                <span>DAX</span>
+                            </div>
+                            <h3>Sales Performance Dashboard</h3>
+                            <p>Built an interactive dashboard analyzing regional sales performance and product revenue trends. Utilized calculated measures (DAX) and visual analytics to identify underperforming regions and track critical KPIs effectively.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card card">
+                        <div class="project-img bg-p2">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tags">
+                                <span>MySQL</span>
+                                <span>Excel</span>
+                            </div>
+                            <h3>Employee Attendance Analysis</h3>
+                            <p>Analyzed historical attendance data to detect absenteeism patterns across departments. Created automated Excel reports connected to SQL views that streamlined HR payroll validation processes.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-card card">
+                        <div class="project-img bg-p3">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tags">
+                                <span>Advanced Excel</span>
+                                <span>Automation</span>
+                            </div>
+                            <h3>Operational Reporting Automation</h3>
+                            <p>Designed standardized reporting templates using nested functions, XLOOKUP, and macros that automatically clean, format, and structure raw operational data into readable insight summaries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Lab Section -->
+        <section class="lab section" id="lab">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-flask" style="color:var(--primary);"></i> Interactive Analytics Lab</h2>
+                    <p>Experience my analytical approach in real-time through these simulated marketing dashboards.</p>
+                </div>
+                
+                <!-- Lab Controls -->
+                <div class="lab-tabs">
+                    <button class="tab-btn active" onclick="openSim(event, 'sim1')">Campaign Performance</button>
+                    <button class="tab-btn" onclick="openSim(event, 'sim2')">Content Engagement</button>
+                    <button class="tab-btn" onclick="openSim(event, 'sim3')">Website Traffic</button>
+                </div>
+
+                <!-- Simulation 1 -->
+                <div id="sim1" class="sim-content active card">
+                    <div class="sim-header">
+                        <h3>Social Media Campaign Performance Simulator</h3>
+                        <p>Adjust the parameters below to project campaign KPIs based on historical conversion models.</p>
+                    </div>
+                    <div class="sim-grid">
+                        <div class="sim-controls">
+                            <div class="control-group">
+                                <label for="s1-budget">Ad Budget ($): <span id="s1-budget-val">5000</span></label>
+                                <input type="range" id="s1-budget" min="500" max="20000" step="500" value="5000">
+                            </div>
+                            <div class="control-group">
+                                <label for="s1-platform">Platform</label>
+                                <select id="s1-platform">
+                                    <option value="instagram">Instagram</option>
+                                    <option value="facebook">Facebook</option>
+                                    <option value="linkedin">LinkedIn</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="s1-duration">Campaign Duration (Days): <span id="s1-duration-val">14</span></label>
+                                <input type="range" id="s1-duration" min="7" max="60" step="1" value="14">
+                            </div>
+                            <div class="insight-box">
+                                <h4><i class="fa-solid fa-lightbulb"></i> Analyst Insight</h4>
+                                <p id="s1-insight">Instagram tends to offer lower CPC but highly variable conversion rates depending on visual creative quality. Current budget scaling looks healthy.</p>
+                            </div>
+                        </div>
+                        <div class="sim-results">
+                            <div class="kpi-grid">
+                                <div class="kpi-card"><div class="kpi-title">Impressions</div><div class="kpi-value" id="s1-imp">125k</div></div>
+                                <div class="kpi-card"><div class="kpi-title">Clicks</div><div class="kpi-value" id="s1-clicks">3,250</div></div>
+                                <div class="kpi-card"><div class="kpi-title">CTR</div><div class="kpi-value" id="s1-ctr">2.6%</div></div>
+                                <div class="kpi-card"><div class="kpi-title">CPC</div><div class="kpi-value" id="s1-cpc">$1.53</div></div>
+                                <div class="kpi-card"><div class="kpi-title">Conversions</div><div class="kpi-value" id="s1-conv">145</div></div>
+                                <div class="kpi-card hl"><div class="kpi-title">Proj. ROI</div><div class="kpi-value" id="s1-roi">+124%</div></div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="chartSim1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulation 2 -->
+                <div id="sim2" class="sim-content card" style="display:none;">
+                    <div class="sim-header">
+                        <h3>Content Engagement Analyzer</h3>
+                        <p>Analyze how different post formats perform based on dataset filtering.</p>
+                    </div>
+                    <div class="sim-grid reverse">
+                        <div class="sim-controls">
+                            <div class="control-group">
+                                <label for="s2-type">Post Type Filter</label>
+                                <select id="s2-type">
+                                    <option value="all">All Types</option>
+                                    <option value="reel">Instagram Reel</option>
+                                    <option value="image">Static Image</option>
+                                    <option value="carousel">Carousel Post</option>
+                                </select>
+                            </div>
+                            <div class="kpi-grid" style="margin-top:20px; grid-template-columns: 1fr 1fr;">
+                                <div class="kpi-card"><div class="kpi-title">Avg. Reach</div><div class="kpi-value" id="s2-reach">14.2k</div></div>
+                                <div class="kpi-card"><div class="kpi-title">Eng. Rate</div><div class="kpi-value" id="s2-er">4.8%</div></div>
+                                <div class="kpi-card"><div class="kpi-title">Likes</div><div class="kpi-value" id="s2-likes">680</div></div>
+                                <div class="kpi-card"><div class="kpi-title">Comments</div><div class="kpi-value" id="s2-com">42</div></div>
+                            </div>
+                            <div class="insight-box mt-4">
+                                <h4><i class="fa-solid fa-lightbulb"></i> Analyst Insight</h4>
+                                <p id="s2-insight">Across all types, engagement peaks during late afternoon. Carousels drive the highest save rate, while Reels dominate raw reach.</p>
+                            </div>
+                        </div>
+                        <div class="sim-results">
+                            <div class="chart-container" style="height:350px;">
+                                <canvas id="chartSim2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulation 3 -->
+                <div id="sim3" class="sim-content card" style="display:none;">
+                    <div class="sim-header">
+                        <h3>Website Traffic Insights Dashboard</h3>
+                        <p>Explore weekly traffic distribution across acquisition channels.</p>
+                    </div>
+                    <div class="sim-grid">
+                        <div class="sim-controls">
+                            <div class="control-group">
+                                <label for="s3-channel">Focus Channel</label>
+                                <select id="s3-channel">
+                                    <option value="all">All Channels (Overview)</option>
+                                    <option value="organic">Organic Search</option>
+                                    <option value="paid">Paid Ads</option>
+                                    <option value="social">Social Media</option>
+                                    <option value="referral">Referral</option>
+                                    <option value="direct">Direct</option>
+                                </select>
+                            </div>
+                             <div class="kpi-grid mt-4">
+                                <div class="kpi-card"><div class="kpi-title">Total Users</div><div class="kpi-value" id="s3-users">45,200</div></div>
+                                <div class="kpi-card"><div class="kpi-title">Sessions</div><div class="kpi-value" id="s3-sess">52,100</div></div>
+                                <div class="kpi-card"><div class="kpi-title">Bounce Rate</div><div class="kpi-value" id="s3-br">42.5%</div></div>
+                                <div class="kpi-card hl"><div class="kpi-title">Conv. Rate</div><div class="kpi-value" id="s3-cr">2.8%</div></div>
+                            </div>
+                            <div class="insight-box mt-4">
+                                <h4><i class="fa-solid fa-lightbulb"></i> Analyst Insight</h4>
+                                <p id="s3-insight">Organic traffic remains the most consistent source with the lowest bounce rate. Paid spikes correspond to recent campaign launches.</p>
+                            </div>
+                        </div>
+                        <div class="sim-results">
+                            <div class="chart-container">
+                                <canvas id="chartSim3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications -->
+        <section class="edu-cert section bg-light" id="education">
+            <div class="container">
+                <div class="grid-2">
+                    <!-- Education -->
+                    <div class="education-block">
+                        <div class="section-header align-left">
+                            <h2>Education</h2>
+                        </div>
+                        <div class="card edu-card">
+                            <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div class="edu-details">
+                                <h3>Bachelor of Engineering</h3>
+                                <p class="major">Electronics and Communication</p>
+                                <p class="insti">NPR College of Engineering and Technology</p>
+                                <div class="edu-meta">
+                                    <span>2021 – 2025</span>
+                                    <span class="cgpa">CGPA: 7.35</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Certifications & Languages -->
+                    <div class="cert-lang-block">
+                        <div class="section-header align-left">
+                            <h2>Credentials</h2>
+                        </div>
+                        <div class="card cert-card mb-4">
+                            <h4><i class="fa-solid fa-certificate"></i> Certifications</h4>
+                            <ul class="cert-list">
+                                <li><strong>Python for Data Science</strong> – Besant Technologies</li>
+                                <li><strong>SQL for Data Analysis</strong> – Besant Technologies</li>
+                            </ul>
+                        </div>
+                        <div class="card lang-card">
+                            <h4><i class="fa-solid fa-language"></i> Languages</h4>
+                            <div class="tags">
+                                <span class="tag tech">English (Fluent)</span>
+                                <span class="tag tech">Tamil (Native)</span>
+                                <span class="tag tech">Malayalam (Basic)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container footer-content">
-            <div class="contact-info">
-                <h3>Contact</h3>
-                <p>Nithishkumar K</p>
-                <p>Chennai, India</p>
-                <p><a href="mailto:nithi11716@gmail.com">nithi11716@gmail.com</a></p>
-                <p>+91 9787169246</p>
+            <div class="footer-left">
+                <h3>Nithishkumar K</h3>
+                <p>Data Analyst | Problem Solver</p>
             </div>
-            <div class="copyright">
-                <p>&copy; 2026 Nithishkumar K. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="mailto:nithi11716@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
             </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nithishkumar K. Portfolio crafted to simulate business analytics.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
-
 </html>
