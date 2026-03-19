@@ -1,292 +1,250 @@
 // Base Configuration for Charts
-Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
 Chart.defaults.color = '#64748B';
-Chart.defaults.scale.grid.color = 'rgba(226, 232, 240, 0.5)';
+Chart.defaults.scale.grid.color = 'rgba(226, 232, 240, 0.4)';
 
 // Hero Mockup Chart
 const ctxHero = document.getElementById('heroMockupChart').getContext('2d');
-new Chart(ctxHero, {
-    type: 'line',
-    data: {
-        labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6'],
-        datasets: [{
-            label: 'Conversion Rate',
-            data: [2.1, 2.8, 2.5, 3.2, 3.8, 4.2],
-            borderColor: '#3B82F6',
-            backgroundColor: 'rgba(59, 130, 246, 0.2)',
-            fill: true,
-            tension: 0.4,
-            borderWidth: 2,
-            pointRadius: 0
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false }
+if (ctxHero) {
+    new Chart(ctxHero, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Accuracy',
+                data: [96.5, 97.2, 98.1, 98.5, 99.0, 99.2],
+                borderColor: '#1e40af',
+                backgroundColor: 'rgba(30, 64, 175, 0.05)',
+                fill: true,
+                tension: 0.4,
+                borderWidth: 3,
+                pointRadius: 4,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#1e40af'
+            }]
         },
-        scales: {
-            x: { display: false },
-            y: { display: false, min: 0 }
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { x: { display: false }, y: { display: false, min: 95, max: 100 } }
+        }
+    });
+}
+
+// Global Modal State
+let activeStream = null;
+let modalChartObj = null;
+
+// Simulation Data Configuration
+const simulations = {
+    sales: {
+        type: 'bar',
+        indexAxis: 'y',
+        title: "Sales Strategy Impact Simulation",
+        desc: "Analyzing Actual vs. Target performance across regional benchmarks...",
+        steps: ["SQL Query: Sales Variance Output...", "Mapping Regional Deltas...", "Normalizing Performance Index...", "Rendering Executive Dashboard..."],
+        kpis: [
+            { label: 'Achievement', value: 104, suffix: '%' },
+            { label: 'Revenue Pipeline', value: 92, suffix: 'M' },
+            { label: 'Growth Delta', value: 15, suffix: '%' }
+        ],
+        chartData: {
+            labels: ['North', 'South', 'East', 'West'],
+            datasets: [
+                { label: 'Actual', data: [85, 92, 78, 95], color: '#1e40af' },
+                { label: 'Target', data: [80, 85, 82, 90], color: '#94a3b8' }
+            ]
+        }
+    },
+    attendance: {
+        type: 'radar',
+        title: "Workforce Efficiency Simulation",
+        desc: "Multivariate analysis of department-wise operational performance...",
+        steps: ["HRIS Extraction: Completed...", "Calculating Efficiency Ratios...", "Cross-referencing Output Quality...", "Mapping Performance Radials..."],
+        kpis: [
+            { label: 'Resource Util.', value: 88, suffix: '%' },
+            { label: 'Fatigue Index', value: 12, suffix: '%' },
+            { label: 'Quality Score', value: 99.1, suffix: '%' }
+        ],
+        chartData: {
+            labels: ['Attendance', 'Quality', 'Punctuality', 'Output', 'Overtime', 'Training'],
+            datasets: [
+                { label: 'IT Systems', data: [95, 98, 92, 94, 20, 90], color: 'rgba(30, 64, 175, 0.7)' },
+                { label: 'Operational', data: [88, 90, 85, 82, 60, 75], color: 'rgba(16, 185, 129, 0.7)' }
+            ]
+        }
+    },
+    operational: {
+        type: 'doughnut',
+        title: "MIS Automation Simulation",
+        desc: "Evaluating data pipeline health and manual efforts reduction...",
+        steps: ["Script: Python Cleanup Engine...", "Validating 5k+ Records...", "Analyzing Automation Bottlenecks...", "Generating ROI Distribution..."],
+        kpis: [
+            { label: 'Time Saved', value: 32, suffix: 'h/wk' },
+            { label: 'Data Accuracy', value: 99.8, suffix: '%' },
+            { label: 'Manual Load', value: 4.2, suffix: '%' }
+        ],
+        chartData: {
+            labels: ['Automated', 'Manual Check', 'Sync Delay', 'Validation'],
+            datasets: [
+                { data: [75, 15, 6, 4], colors: ['#1e40af', '#3b82f6', '#94a3b8', '#cbd5e1'] }
+            ]
         }
     }
-});
+};
 
-// Tab Switching Logic
-function openSim(evt, simId) {
-    const tabContents = document.getElementsByClassName('sim-content');
-    for (let i = 0; i < tabContents.length; i++) {
-        tabContents[i].style.display = 'none';
-        tabContents[i].classList.remove('active');
-    }
-
-    const tabBtns = document.getElementsByClassName('tab-btn');
-    for (let i = 0; i < tabBtns.length; i++) {
-        tabBtns[i].classList.remove('active');
-    }
-
-    document.getElementById(simId).style.display = 'block';
-    setTimeout(() => {
-        document.getElementById(simId).classList.add('active');
-    }, 10);
-    evt.currentTarget.classList.add('active');
+// Helper: Animated Counter
+async function animateCounter(element, target, suffix = "") {
+    let current = 0;
+    const duration = 1500;
+    const intervalTime = 30;
+    const stepVal = target / (duration / intervalTime);
+    
+    return new Promise(resolve => {
+        const interval = setInterval(() => {
+            current += stepVal;
+            if (current >= target) {
+                element.innerText = target + suffix;
+                clearInterval(interval);
+                resolve();
+            } else {
+                element.innerText = current.toFixed(target % 1 === 0 ? 0 : 1) + suffix;
+            }
+        }, intervalTime);
+    });
 }
 
-// -------------------------------------------------------------
-// Simulation 1: Social Media Campaign Performance
-// -------------------------------------------------------------
-const s1Budget = document.getElementById('s1-budget');
-const s1Duration = document.getElementById('s1-duration');
-const s1Platform = document.getElementById('s1-platform');
-
-const formatNumber = (num) => num.toLocaleString('en-US');
-const formatCurrency = (num) => '$' + num.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-
-const s1ChartCtx = document.getElementById('chartSim1').getContext('2d');
-let s1Chart = new Chart(s1ChartCtx, {
-    type: 'bar',
-    data: {
-        labels: ['Impressions (k)', 'Clicks', 'Conversions'],
-        datasets: [{
-            label: 'Projected Metrics',
-            data: [0, 0, 0],
-            backgroundColor: ['#3B82F6', '#10B981', '#F59E0B'],
-            borderRadius: 6
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } }
-    }
-});
-
-function updateSim1() {
-    const budget = parseFloat(s1Budget.value);
-    const duration = parseFloat(s1Duration.value);
-    const platform = s1Platform.value;
-
-    document.getElementById('s1-budget-val').innerText = budget;
-    document.getElementById('s1-duration-val').innerText = duration;
-
-    // Platform base metrics
-    let cpm, ctr, convRate;
-    if (platform === 'instagram') {
-        cpm = 8.5; ctr = 0.025; convRate = 0.045;
-        document.getElementById('s1-insight').innerText = "Instagram tends to offer lower CPC but highly variable conversion rates depending on visual creative quality. Current budget scaling looks healthy.";
-    } else if (platform === 'facebook') {
-        cpm = 11.2; ctr = 0.032; convRate = 0.06;
-        document.getElementById('s1-insight').innerText = "Facebook provides steady reach with slightly higher costs. It usually yields consistent conversion rates for broad audiences.";
-    } else { // linkedin
-        cpm = 25.0; ctr = 0.015; convRate = 0.08;
-        document.getElementById('s1-insight').innerText = "LinkedIn has premium CPMs but significantly higher B2B conversion quality. Expect lower volume but higher value conversions.";
-    }
-
-    // Calculations
-    const impressions = (budget / cpm) * 1000;
-    const clicks = impressions * ctr;
-    const cpc = budget / clicks;
-    const conversions = clicks * convRate;
-    
-    // Assume average customer value is $150
-    const aov = 150;
-    const revenue = conversions * aov;
-    const roi = ((revenue - budget) / budget) * 100;
-
-    // Update DOM
-    document.getElementById('s1-imp').innerText = impressions > 1000000 ? (impressions/1000000).toFixed(1) + 'M' : (impressions/1000).toFixed(1) + 'k';
-    document.getElementById('s1-clicks').innerText = formatNumber(Math.round(clicks));
-    document.getElementById('s1-ctr').innerText = (ctr * 100).toFixed(1) + '%';
-    document.getElementById('s1-cpc').innerText = formatCurrency(cpc);
-    document.getElementById('s1-conv').innerText = formatNumber(Math.round(conversions));
-    document.getElementById('s1-roi').innerText = (roi > 0 ? '+' : '') + Math.round(roi) + '%';
-    
-    // Update Chart
-    s1Chart.data.datasets[0].data = [impressions/1000, clicks, conversions];
-    s1Chart.update();
+function closeModal() {
+    document.getElementById('simulationModal').style.display = 'none';
+    if (activeStream) clearInterval(activeStream);
+    if (modalChartObj) modalChartObj.destroy();
 }
+window.closeModal = closeModal;
 
-s1Budget.addEventListener('input', updateSim1);
-s1Duration.addEventListener('input', updateSim1);
-s1Platform.addEventListener('change', updateSim1);
+async function runSimulation(key) {
+    const sim = simulations[key];
+    if (!sim) return;
 
-// Initialize Sim 1
-updateSim1();
+    const modal = document.getElementById('simulationModal');
+    const bar = document.getElementById('simProgressBar');
+    const stepText = document.getElementById('simStepText');
+    const resultArea = document.getElementById('simResult');
+    const kpiGrid = document.getElementById('modalKpis');
+    
+    // Reset Modal
+    modal.style.display = 'flex';
+    resultArea.style.display = 'none';
+    bar.style.width = '0%';
+    document.getElementById('simTitle').innerText = sim.title;
+    document.getElementById('simDesc').innerText = sim.desc;
+    if (activeStream) clearInterval(activeStream);
+    if (modalChartObj) modalChartObj.destroy();
 
-// -------------------------------------------------------------
-// Simulation 2: Content Engagement
-// -------------------------------------------------------------
-const s2Type = document.getElementById('s2-type');
-const s2ChartCtx = document.getElementById('chartSim2').getContext('2d');
+    // 1. Logic Processing
+    for (let i = 0; i < sim.steps.length; i++) {
+        stepText.innerText = `> ${sim.steps[i]}`;
+        bar.style.width = ((i + 1) / sim.steps.length * 100) + '%';
+        await new Promise(r => setTimeout(r, 600));
+    }
 
-let s2Chart = new Chart(s2ChartCtx, {
-    type: 'doughnut',
-    data: {
-        labels: ['Likes', 'Comments', 'Shares', 'Saves'],
-        datasets: [{
-            data: [65, 10, 15, 10],
-            backgroundColor: ['#3B82F6', '#10B981', '#F59E0B', '#8B5CF6'],
-            borderWidth: 0,
-            cutout: '70%'
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { position: 'right' }
+    // 2. Data Initialization & Streaming
+    stepText.innerText = "> STREAMING REAL-TIME PIPELINE DATA...";
+    resultArea.style.display = 'block';
+    
+    const ctx = document.getElementById('modalChart').getContext('2d');
+    
+    const chartConfig = {
+        type: sim.type,
+        data: {
+            labels: sim.chartData.labels,
+            datasets: sim.chartData.datasets.map(ds => ({
+                label: ds.label || '',
+                data: ds.data.map(() => Math.random() * 100),
+                backgroundColor: ds.colors || (ds.color ? ds.color : '#cbd5e1'),
+                borderColor: sim.type === 'radar' ? ds.color : '#fff',
+                borderWidth: 1,
+                borderRadius: sim.type === 'bar' ? 6 : 0
+            }))
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: sim.indexAxis || 'x',
+            animation: { duration: 0 },
+            plugins: { 
+                legend: { 
+                    display: sim.type !== 'bar', 
+                    position: 'bottom',
+                    labels: { boxWidth: 12, padding: 15, font: { size: 11 } }
+                } 
+            }
         }
-    }
-});
+    };
 
-function updateSim2() {
-    const type = s2Type.value;
+    if (sim.type === 'radar') {
+        chartConfig.options.scales = {
+            r: { angleLines: { display: true }, grid: { circular: true }, ticks: { display: false }, suggestMin: 0, suggestMax: 100 }
+        };
+    }
+
+    modalChartObj = new Chart(ctx, chartConfig);
+
+    // Fluctuation Loop
+    const startTime = Date.now();
+    await new Promise(resolve => {
+        activeStream = setInterval(() => {
+            if (Date.now() - startTime > 2000) {
+                clearInterval(activeStream);
+                resolve();
+            } else {
+                modalChartObj.data.datasets.forEach(ds => {
+                    ds.data = ds.data.map(d => d * (0.8 + Math.random() * 0.4));
+                });
+                modalChartObj.update('none');
+            }
+        }, 120);
+    });
+
+    // 3. Render Final Insights
+    stepText.innerText = "> VALIDATION SUCCESSFUL. PRESENTING FINAL ANALYSIS.";
     
-    let reach, er, likes, com, dist, insight;
-
-    switch(type) {
-        case 'reel':
-            reach = '32.5k'; er = '6.2%'; likes = '1,420'; com = '115';
-            dist = [70, 5, 20, 5];
-            insight = "Reels generate massive algorithmic reach and shareability, leading to high sheer volume of likes and shares, but minimal saves.";
-            break;
-        case 'image':
-            reach = '8.4k'; er = '3.5%'; likes = '412'; com = '28';
-            dist = [85, 8, 2, 5];
-            insight = "Static images have stable but lower reach. They function well for quick updates but don't drive deep engagement or algorithm pushed discovery.";
-            break;
-        case 'carousel':
-            reach = '15.2k'; er = '7.8%'; likes = '890'; com = '64';
-            dist = [55, 15, 10, 20];
-            insight = "Carousels dominate in Engagement Rate and Saves. The educational format forces longer dwell time which the algorithm favors heavily.";
-            break;
-        default: // all
-            reach = '14.2k'; er = '4.8%'; likes = '680'; com = '42';
-            dist = [65, 10, 15, 10];
-            insight = "Across all types, engagement peaks during late afternoon. Carousels drive the highest save rate, while Reels dominate raw reach.";
-            break;
-    }
-
-    document.getElementById('s2-reach').innerText = reach;
-    document.getElementById('s2-er').innerText = er;
-    document.getElementById('s2-likes').innerText = likes;
-    document.getElementById('s2-com').innerText = com;
-    document.getElementById('s2-insight').innerText = insight;
-
-    s2Chart.data.datasets[0].data = dist;
-    s2Chart.update();
-}
-
-s2Type.addEventListener('change', updateSim2);
-updateSim2();
-
-// -------------------------------------------------------------
-// Simulation 3: Website Traffic Insights
-// -------------------------------------------------------------
-const s3Channel = document.getElementById('s3-channel');
-const s3ChartCtx = document.getElementById('chartSim3').getContext('2d');
-
-let s3Chart = new Chart(s3ChartCtx, {
-    type: 'line',
-    data: {
-        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-        datasets: [{
-            label: 'Sessions',
-            data: [12000, 13500, 11800, 14800],
-            borderColor: '#3B82F6',
-            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-            fill: true,
-            tension: 0.4
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-            y: { beginAtZero: true }
+    sim.chartData.datasets.forEach((ds, i) => {
+        modalChartObj.data.datasets[i].data = ds.data;
+        if (ds.color) {
+            modalChartObj.data.datasets[i].backgroundColor = ds.color;
         }
-    }
-});
-
-function updateSim3() {
-    const channel = s3Channel.value;
+    });
     
-    let users, sess, br, cr, insight, chartData;
+    modalChartObj.options.animation = { duration: 1000 };
+    modalChartObj.update();
 
-    switch(channel) {
-        case 'organic':
-            users = '18,400'; sess = '22,100'; br = '38.2%'; cr = '3.5%';
-            insight = "Organic traffic shows high intent with the lowest bounce rate. Content ranking improvements in Week 4 showed a clear session spike.";
-            chartData = [4500, 4800, 4600, 8200];
-            break;
-        case 'paid':
-            users = '12,500'; sess = '14,200'; br = '52.1%'; cr = '4.1%';
-            insight = "Paid ads drive immediate volume and strong conversion rates, though bounce rates are higher due to colder audience targeting.";
-            chartData = [3100, 4500, 3200, 3400];
-            break;
-        case 'social':
-            users = '8,200'; sess = '9,100'; br = '65.4%'; cr = '1.2%';
-            insight = "Social traffic is highly volatile and correlates with posting schedule. Conversion is lower, acting mostly as top-of-funnel awareness.";
-            chartData = [1200, 2800, 1500, 3600];
-            break;
-        case 'referral':
-            users = '2,100'; sess = '2,500'; br = '41.2%'; cr = '5.8%';
-            insight = "Referral traffic volume is low but conversion quality is exceptional. Backlink from industry blog in Week 2 drove sustainable traffic.";
-            chartData = [400, 900, 600, 600];
-            break;
-        case 'direct':
-            users = '4,000'; sess = '4,200'; br = '45.0%'; cr = '2.1%';
-            insight = "Direct traffic remains steady, reflecting baseline brand awareness and returning visitors bypassing search engines.";
-            chartData = [1000, 1050, 1100, 1050];
-            break;
-        default: // all
-            users = '45,200'; sess = '52,100'; br = '42.5%'; cr = '2.8%';
-            insight = "Overall traffic trends positive. Combining Paid's conversion strength with Organic's volume retention creates a balanced acquisition portfolio.";
-            chartData = [10200, 14050, 11000, 16850];
-            break;
-    }
+    // KPI Counters
+    kpiGrid.innerHTML = sim.kpis.map(k => `
+        <div class="kpi-card">
+            <div class="m-lbl">${k.label}</div>
+            <div class="m-val kpi-counter-val">0</div>
+        </div>
+    `).join('');
 
-    document.getElementById('s3-users').innerText = users;
-    document.getElementById('s3-sess').innerText = sess;
-    document.getElementById('s3-br').innerText = br;
-    document.getElementById('s3-cr').innerText = cr;
-    document.getElementById('s3-insight').innerText = insight;
-
-    s3Chart.data.datasets[0].data = chartData;
-    s3Chart.update();
+    const targetVals = document.querySelectorAll('.kpi-counter-val');
+    const anims = sim.kpis.map((k, i) => animateCounter(targetVals[i], k.value, k.suffix));
+    await Promise.all(anims);
 }
 
-s3Channel.addEventListener('change', updateSim3);
-updateSim3();
+// Exposure
+window.runSimulation = runSimulation;
+window.closeModal = closeModal;
 
-// Smooth Scrolling for Nav Links
+// Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
     });
 });
