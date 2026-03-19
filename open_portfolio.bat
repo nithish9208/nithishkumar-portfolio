@@ -1,0 +1,3 @@
+@echo off
+echo Opening Nithishkumar K's Portfolio...
+start index.html
